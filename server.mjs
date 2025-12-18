@@ -2,11 +2,10 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import bcrypt from 'bcrypt';
+// import bcrypt from 'bcrypt';
 import { v2 as cloudinary } from 'cloudinary';
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 
-// Routes
 import authRoutes from './routes/auth.mjs';
 import courseRoutes from './routes/course.mjs';
 import studentRoutes from './routes/student.mjs';
@@ -14,15 +13,8 @@ import attendanceRoutes from './routes/attendance.mjs';
 
 dotenv.config();
 
-// IMPORTANT: Required environment variables for proper functioning:
-// - CLOUDINARY_CLOUD_NAME: Your Cloudinary cloud name
-// - CLOUDINARY_API_KEY:  Your Cloudinary API key
-// - CLOUDINARY_API_SECRET: Your Cloudinary API secret
-// Make sure these are set in your .env file to avoid upload timeouts
-
 const app = express();
 
-// Configure Cloudinary with better error handling
 try {
   cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'dxpqgnxob',
@@ -31,7 +23,7 @@ try {
     secure: true
   });
 
-  // Test Cloudinary connection
+  // Test Cloudinary connections
   console.log('Cloudinary configuration:', {
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'dxpqgnxob',
     api_key: process.env.CLOUDINARY_API_KEY ? '****' : '****', // Don't log actual keys
